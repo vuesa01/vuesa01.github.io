@@ -7,11 +7,10 @@
 async function getData(url) {
     return fetch(url)
     .then(response => response.json())
-    .catch(error => console.log(error));
+    .catch(error => console.log(error))
 }
 
 async function requestData(){
-    const theForm = document.getElementById(`fields`);
     category = document.querySelector.getElementById('selCat').value;
     language = document.querySelector.getElementById('selLang').value;
     number = document.querySelector.getElementById('selNum').value;
@@ -29,14 +28,14 @@ async function requestData(){
         let jokes = await getData(`https://vuesa01.herokuapp.com/api/v1/jokes?category=${category}&language=${language}`);
     }
     jokesList = document.querySelector.getElementById('jokes');
+    console.log(jokesList);
     jokesList.innerHTML = "";
 
     for(aJoke in jokes){
         let jokeParagraph = document.createElement("p");
         jokeParagraph.setAttribute("class", "text-justify");
+        jokeParagraph.innerHTML = aJoke
         jokesList.append(jokeParagraph);
     }
 
-    // jokesList.innerHTML = jokes;
-    console.log(jokesList);
 }
